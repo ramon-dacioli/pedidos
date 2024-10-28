@@ -1,0 +1,9 @@
+object DmConexao: TDmConexao
+  OnCreate = DataModuleCreate
+  Height = 235
+  Width = 415
+  object sqlConexao: TFDConnection
+    Left = 192
+    Top = 104
+  end
+end

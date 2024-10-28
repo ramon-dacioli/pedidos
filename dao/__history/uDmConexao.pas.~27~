@@ -1,0 +1,49 @@
+unit uDmConexao;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.MySQL,
+  FireDAC.Phys.MySQLDef, FireDAC.VCLUI.Wait, Data.DB, FireDAC.Comp.Client,
+  IniFiles, System.IOUtils;
+
+type
+  TDmConexao = class(TDataModule)
+    sqlConexao: TFDConnection;
+    driverMysql: TFDPhysMySQLDriverLink;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+    procedure ConfigurarConexao;
+  public
+    { Public declarations }
+  end;
+
+var
+  DmConexao: TDmConexao;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+procedure TDmConexao.DataModuleCreate(Sender: TObject);
+begin
+  ConfigurarConexao;
+end;
+
+procedure TDmConexao.ConfigurarConexao;
+var
+  Ini: TIniFile;
+  ArquivoIni: string;
+begin
+
+  driverMysql.VendorLib := 'C:\Users\ramon\Downloads\libmysql.dll\LIBMYSQL.DLL';
+
+end;
+
+end.
+

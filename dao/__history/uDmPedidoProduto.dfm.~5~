@@ -1,0 +1,44 @@
+object DmPedidoProduto: TDmPedidoProduto
+  Height = 351
+  Width = 427
+  object qryInserir: TFDQuery
+    Connection = DmConexao.sqlConexao
+    Left = 136
+    Top = 112
+  end
+  object sqlInserirMercadorias: TSQLDataSet
+    CommandText = 
+      'INSERT INTO itens_vendidos (mercadoria, quantidade, prec_unit, t' +
+      'otal, venda_idvenda) VALUES (:mercadoria, :quantidade, :prec_uni' +
+      't, :total, :venda_idvenda)'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftFloat
+        Name = 'quantidade'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftFloat
+        Name = 'valor_unitario'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftFloat
+        Name = 'valor_total'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'produtos_codigo'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'pedidos_dados_gerais_numero_pedido'
+        ParamType = ptUnknown
+      end>
+    Left = 248
+    Top = 88
+  end
+end

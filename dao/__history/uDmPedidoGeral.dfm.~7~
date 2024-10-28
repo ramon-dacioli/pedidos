@@ -1,0 +1,26 @@
+object DmPedidoGeral: TDmPedidoGeral
+  Height = 271
+  Width = 336
+  object qryPesquisar: TFDQuery
+    Connection = DmConexao.sqlConexao
+    Left = 64
+    Top = 64
+  end
+  object qryInserir: TFDQuery
+    Connection = DmConexao.sqlConexao
+    Left = 136
+    Top = 72
+  end
+  object FDQuery3: TFDQuery
+    Left = 48
+    Top = 192
+  end
+  object qryExcluir: TFDQuery
+    Left = 176
+    Top = 152
+  end
+  object qryAlterar: TFDQuery
+    Left = 256
+    Top = 48
+  end
+end

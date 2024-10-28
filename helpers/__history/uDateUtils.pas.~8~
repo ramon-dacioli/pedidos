@@ -1,0 +1,53 @@
+unit uDateUtils;
+
+interface
+
+uses
+  System.SysUtils, System.DateUtils;
+
+function StringToDate(const ADateStr: string; const AFormat: string = 'dd/mm/yyyy'): TDate;
+function ConvertDateFormat(const ADateStr: string): string;
+
+implementation
+
+function StringToDate(const ADateStr: string; const AFormat: string = 'dd/mm/yyyy'): TDate;
+var
+  LDate: TDateTime;
+  FormatSettings: TFormatSettings;
+begin
+  FormatSettings := TFormatSettings.Create;
+  FormatSettings.ShortDateFormat := AFormat; // Define o formato de data desejado
+
+  // Tenta converter a string para TDateTime com o formato especificado
+  if TryStrToDate(ADateStr, LDate, FormatSettings) then
+    Result := DateOf(LDate)
+  else
+    raise Exception.Create('Formato de data inválido: ' + ADateStr);
+end;
+
+function ConvertDateFormat(const ADateStr: string): string;
+var
+  LYear, LMonth, LDay: string;
+begin
+  // Verifica se a string está no formato esperado
+  if Length(ADateStr) = 10 then
+  begin
+    if (ADateStr[5] = '-') and (ADateStr[8] = '-') then
+    begin
+      LYear := Copy(ADateStr, 1, 4);
+      LMonth := Copy(ADateStr, 6, 2);
+      LDay := Copy(ADateStr, 9, 2);
+
+      // Retorna a data no formato dd-mm-yyyy
+      Result := Format('%s-%s-%s', [LDay, LMonth, LYear]);
+    end
+    else
+      raise Exception.Create('Formato de data inválido: ' + ADateStr);
+  end
+  else
+    raise Exception.Create('Formato de data inválido: ' + ADateStr);
+end;
+
+
+end.
+

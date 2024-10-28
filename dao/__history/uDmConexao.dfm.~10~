@@ -1,0 +1,17 @@
+object DmConexao: TDmConexao
+  Height = 235
+  Width = 415
+  object sqlConexao: TFDConnection
+    Params.Strings = (
+      'Database=pedidos'
+      'User_Name=root'
+      'DriverID=MySQL')
+    Left = 296
+    Top = 56
+  end
+  object driverMysql: TFDPhysMySQLDriverLink
+    VendorLib = 'C:\Users\ramon\Downloads\libmysql.dll\LIBMYSQL.DLL'
+    Left = 120
+    Top = 96
+  end
+end

@@ -1,0 +1,45 @@
+unit uProdutoController;
+
+interface
+
+uses
+  uProdutoModel;
+
+type
+  TProdutoController = class
+  public
+    //constructor Create;
+    //destructor Destroy; override;
+    procedure Pesquisar(sDescricao: string);
+    procedure CarregarProduto(oProduto: TProduto; iCodigo: Integer);
+  end;
+
+implementation
+
+uses uDmProduto, SysUtils;
+
+{ TProdutoController }
+
+procedure TProdutoController.CarregarProduto(oProduto: TProduto; iCodigo: Integer);
+begin
+  DmProdutos.CarregarProduto(oProduto, iCodigo);
+end;
+
+//constructor TProdutoController.Create;
+//begin
+//  DmProduto := TDmProduto.Create(nil);
+//end;
+
+//destructor TProdutoController.Destroy;
+//begin
+//  FreeAndNil(DmProduto);
+// inherited;
+//end;
+
+procedure TProdutoController.Pesquisar(sDescricao: string);
+begin
+  DmProdutos.Pesquisar(sDescricao);
+end;
+
+end.
+

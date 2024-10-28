@@ -1,0 +1,46 @@
+unit uClienteModel;
+
+interface
+
+uses
+  SysUtils;
+
+type
+  TCliente = class
+  private
+    FCodigo: Integer;
+    FNome: string;
+    FCidade: string;
+    FUF: string;
+    //procedure SetNome(const Value: string);
+  public
+    property Codigo: Integer read FCodigo write FCodigo;
+
+    // Método get para obter o nome
+    function GetNome: string;
+    // Método set para definir o nome
+    procedure SetNome(const Value: string);
+    // Propriedade para acessar o nome
+    property Nome: string read GetNome write SetNome;
+
+    property Cidade: string read FCidade write FCidade;
+    property UF: string read FUF write FUF;
+  end;
+
+implementation
+
+{ TCliente }
+
+// Implementação dos métodos da classe TPessoa
+function TCliente.GetNome: string;
+begin
+  Result := FNome;
+end;
+
+procedure TCliente.SetNome(const Value: string);
+begin
+  FNome := Value;
+end;
+
+end.
+

@@ -1,0 +1,78 @@
+unit uDmProduto;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, uProdutoModel, uDmConexao;
+
+type
+  TDmProdutos = class(TDataModule)
+    qryPesquisar: TFDQuery;
+  private
+    function adicionarGrid(oPedido: TProduto; out sErro: string): Boolean;
+    { Private declarations }
+  public
+    { Public declarations }
+    procedure Pesquisar(sNome: string);
+    procedure CarregarProduto (oProduto: TProduto; iCodigo: Integer);
+  end;
+
+var
+  DmProdutos: TDmProdutos;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+{ TDmProdutos }
+
+procedure TDmProdutos.CarregarProduto(oProduto: TProduto; iCodigo: Integer);
+begin
+  qryPesquisar.SQL.Text := 'SELECT * FROM produtos WHERE codigo = :codigo';
+  qryPesquisar.ParamByName('codigo').AsInteger := iCodigo;
+  qryPesquisar.Open;
+
+  if not qryPesquisar.IsEmpty then
+  begin
+    oProduto.Codigo := qryPesquisar.FieldByName('codigo').AsInteger;
+    oProduto.Descricao := qryPesquisar.FieldByName('descricao').AsString;
+    oProduto.PrecoVenda := qryPesquisar.FieldByName('preco_venda').AsString;
+  end;
+
+  qryPesquisar.Close;
+
+end;
+
+procedure TDmProdutos.Pesquisar(sNome: string);
+begin
+  qryPesquisar.SQL.Text := 'SELECT * FROM produtos WHERE codigo LIKE :Codigo';
+  qryPesquisar.ParamByName('Codigo').AsString := '%' + sNome + '%';
+  qryPesquisar.Open;
+end;
+
+function TDmProdutos.adicionarGrid(oPedido: TProduto; out sErro: string): Boolean;
+begin
+  Result := False;
+  try
+    if not qryPesquisar.Active then
+      qryPesquisar.Open;
+
+    qryPesquisar.Append;
+    qryPesquisar.ParamByName('Codigo').AsInteger := oPedido.Codigo;
+    qryPesquisar.ParamByName('Descricao').AsString := oPedido.Descricao;
+    qryPesquisar.ParamByName('PecoVenda').AsString := oPedido.PrecoVenda;
+    qryPesquisar.Post;
+
+    Result := True;
+  except
+    on E: Exception do
+      sErro := 'Ocorreu um erro ao adicionar o produto: ' + sLineBreak + E.Message;
+  end;
+end;
+
+end.

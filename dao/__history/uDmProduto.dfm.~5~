@@ -1,0 +1,9 @@
+object DmProdutos: TDmProdutos
+  Height = 224
+  Width = 318
+  object qryPesquisar: TFDQuery
+    Connection = DmConexao.sqlConexao
+    Left = 136
+    Top = 80
+  end
+end

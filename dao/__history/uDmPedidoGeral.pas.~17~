@@ -1,0 +1,160 @@
+unit uDmPedidoGeral;
+
+interface
+
+uses
+  SysUtils, Classes, DB, FireDAC.Comp.Client, FireDAC.Stan.Param, uPedidoGeralModel,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  FireDAC.Comp.DataSet, Datasnap.DBClient;
+
+type
+  TDmPedidoGeral = class(TDataModule)
+    query: TFDQuery;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    procedure Pesquisar(sNumeroPedido: Integer);
+    procedure CarregarPedido(oPedido: TPedidoGeral; iNumeroPedido: Integer);
+    function Inserir(oPedido: TPedidoGeral; out sErro: string): Boolean;
+    function Alterar(oPedido: TPedidoGeral; out sErro: string): Boolean;
+    function Excluir(iNumeroPedido: Integer; out sErro: string): Boolean;
+  end;
+
+var
+  DmPedidoGeral: TDmPedidoGeral;
+
+implementation
+
+uses uDmConexao;
+
+{$R *.dfm}
+
+{ TDmPedidoGeral }
+
+function TDmPedidoGeral.Alterar(oPedido: TPedidoGeral; out sErro: string): Boolean;
+begin
+  Result := False;
+  var Transaction := TFDTransaction.Create(nil);
+  try
+    Transaction.Connection := DmConexao.sqlConexao;
+    Transaction.StartTransaction;
+
+    qryAlterar.SQL.Text := 'UPDATE pedidos SET data_emissao = :data_emissao, valor_total = :valor_total, codigo_cliente = :codigo_cliente WHERE numero_pedido = :numero_pedido';
+    qryAlterar.ParamByName('data_emissao').AsDate := oPedido.DataEmissao;
+    qryAlterar.ParamByName('valor_total').AsFloat := oPedido.ValorTotal;
+    qryAlterar.ParamByName('codigo_cliente').AsInteger := oPedido.CodigoCliente;
+    qryAlterar.ParamByName('numero_pedido').AsInteger := oPedido.NumeroPedido;
+
+    qryAlterar.ExecSQL;
+    Transaction.Commit;
+    Result := True;
+  except
+    on E: Exception do
+    begin
+      Transaction.Rollback;
+      sErro := 'Ocorreu um erro ao alterar o Pedido: ' + sLineBreak + E.Message;
+    end;
+  end;
+  Transaction.Free;
+end;
+
+procedure TDmPedidoGeral.CarregarPedido(oPedido: TPedidoGeral; iNumeroPedido: Integer);
+begin
+  qryPesquisar.SQL.Text := 'SELECT * FROM pedidos WHERE numero_pedido = :numero_pedido';
+  qryPesquisar.ParamByName('numero_pedido').AsInteger := iNumeroPedido;
+  qryPesquisar.Open;
+
+  if not qryPesquisar.IsEmpty then
+  begin
+    oPedido.NumeroPedido := qryPesquisar.FieldByName('numero_pedido').AsInteger;
+    oPedido.DataEmissao := qryPesquisar.FieldByName('data_emissao').AsDateTime;
+    oPedido.ValorTotal := qryPesquisar.FieldByName('valor_total').AsFloat;
+    oPedido.CodigoCliente := qryPesquisar.FieldByName('codigo_cliente').AsInteger;
+  end;
+
+  qryPesquisar.Close;
+end;
+
+procedure TDmPedidoGeral.DataModuleCreate(Sender: TObject);
+begin
+  try
+    if Assigned(DmConexao) and Assigned(DmConexao.sqlConexao) and DmConexao.sqlConexao.Connected then
+    begin
+      qryPesquisar.Connection := DmConexao.sqlConexao;
+      qryInserir.Connection := DmConexao.sqlConexao;
+      qryAlterar.Connection := DmConexao.sqlConexao;
+      qryExcluir.Connection := DmConexao.sqlConexao;
+    end
+    else
+    begin
+      raise Exception.Create('A conexão não está disponível ou não foi criada.');
+    end;
+  except
+    on E: Exception do
+      //ShowMessage('Erro ao configurar as conexões: ' + E.Message);
+  end;
+end;
+
+function TDmPedidoGeral.Excluir(iNumeroPedido: Integer; out sErro: string): Boolean;
+begin
+  Result := False;
+  var Transaction := TFDTransaction.Create(nil);
+  try
+    Transaction.Connection := DmConexao.sqlConexao;
+    Transaction.StartTransaction;
+
+    qryPesquisar.SQL.Text := 'DELETE FROM pedidos_dados_gerais WHERE numero_pedido = :NumeroPedido';
+    qryPesquisar.ParamByName('NumeroPedido').AsInteger := iNumeroPedido;
+
+    qryPesquisar.ExecSQL;
+    Transaction.Commit;
+    Result := True;
+  except
+    on E: Exception do
+    begin
+      Transaction.Rollback;
+      sErro := 'Ocorreu um erro ao excluir o Pedido: ' + sLineBreak + E.Message;
+    end;
+  end;
+  Transaction.Free;
+end;
+
+function TDmPedidoGeral.Inserir(oPedido: TPedidoGeral; out sErro: string): Boolean;
+begin
+  Result := False;
+  var Transaction := TFDTransaction.Create(nil);
+  try
+    Transaction.Connection := DmConexao.sqlConexao;
+    Transaction.StartTransaction;
+
+    qryInserir.SQL.Text := 'INSERT INTO pedidos_dados_gerais (numero_pedido, data_emissao, valor_total, clientes_codigo) ' +
+                           'VALUES (:numero_pedido, :data_emissao, :valor_total, :clientes_codigo)';
+    qryInserir.ParamByName('numero_pedido').AsInteger := oPedido.NumeroPedido;
+    qryInserir.ParamByName('data_emissao').AsDate := oPedido.DataEmissao;
+    qryInserir.ParamByName('valor_total').AsFloat := oPedido.ValorTotal;
+    qryInserir.ParamByName('clientes_codigo').AsInteger := oPedido.CodigoCliente;
+
+    qryInserir.ExecSQL;
+    Transaction.Commit;
+    Result := True;
+  except
+    on E: Exception do
+    begin
+      Transaction.Rollback;
+      sErro := 'Ocorreu um erro ao inserir o Pedido: ' + sLineBreak + E.Message;
+    end;
+  end;
+  Transaction.Free;
+end;
+
+procedure TDmPedidoGeral.Pesquisar(sNumeroPedido: Integer);
+begin
+  qryPesquisar.SQL.Text := 'SELECT * FROM pedidos_dados_gerais WHERE numero_pedido LIKE :NumeroPedido';
+  qryPesquisar.ParamByName('NumeroPedido').AsInteger := sNumeroPedido;
+  qryPesquisar.Open;
+end;
+
+end.
+

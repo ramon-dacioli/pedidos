@@ -1,0 +1,29 @@
+object DataModule2: TDataModule2
+  Height = 480
+  Width = 640
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'Database=pedidos'
+      'User_Name=root'
+      'DriverID=MySQL')
+    Left = 456
+    Top = 224
+  end
+  object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
+    VendorLib = 'C:\Users\ramon\Downloads\libmysql.dll\LIBMYSQL.DLL'
+    Left = 296
+    Top = 216
+  end
+  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Provider = 'Forms'
+    Left = 352
+    Top = 336
+  end
+  object FDQuery1: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from clientes')
+    Left = 408
+    Top = 112
+  end
+end

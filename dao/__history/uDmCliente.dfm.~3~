@@ -1,0 +1,8 @@
+object DmCliente: TDmCliente
+  Height = 191
+  Width = 220
+  object qryPesquisar: TFDQuery
+    Left = 120
+    Top = 80
+  end
+end

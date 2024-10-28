@@ -1,0 +1,8 @@
+object DataModule1: TDataModule1
+  Height = 224
+  Width = 318
+  object qryPesquisa: TFDQuery
+    Left = 136
+    Top = 80
+  end
+end

@@ -1,0 +1,9 @@
+object DmPedidoProduto: TDmPedidoProduto
+  Height = 351
+  Width = 427
+  object qryInserir: TFDQuery
+    Connection = DmConexao.sqlConexao
+    Left = 136
+    Top = 112
+  end
+end

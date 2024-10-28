@@ -1,0 +1,15 @@
+object DmConexao: TDmConexao
+  OnCreate = DataModuleCreate
+  Height = 235
+  Width = 415
+  object sqlConexao: TFDConnection
+    Params.Strings = (
+      'DriverID=MySQL')
+    Left = 144
+    Top = 88
+  end
+  object driverMysql: TFDPhysMySQLDriverLink
+    Left = 296
+    Top = 128
+  end
+end

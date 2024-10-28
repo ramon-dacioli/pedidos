@@ -1,0 +1,33 @@
+unit uPedidoGeralModel;
+
+interface
+
+uses
+  SysUtils;
+
+type
+  TPedidoGeral = class
+  private
+    FNumeroPedido: Integer;
+    FDataEmissao: string;
+    FValorTotal: string;
+    FCodigoCliente: Integer;
+    procedure SetDataEmissao(const Value: string);
+  public
+    property NumeroPedido: Integer read FNumeroPedido write FNumeroPedido;
+    property DataEmissao: string read FDataEmissao write SetDataEmissao;
+    property ValorTotal: string read FValorTotal write FValorTotal;
+    property CodigoCliente: Integer read FCodigoCliente write FCodigoCliente;
+  end;
+
+implementation
+
+{ TPedidoGeral }
+
+procedure TPedidoGeral.SetDataEmissao(const Value: string);
+begin
+  FDataEmissao := Value;
+end;
+
+end.
+

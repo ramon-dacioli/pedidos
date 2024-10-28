@@ -1,0 +1,29 @@
+unit uDateUtils;
+
+interface
+
+uses
+  SysUtils, DateUtils;
+
+type
+  TDateUtils = class
+  public
+    class function StringToDate(const ADateStr: string): TDate;
+  end;
+
+implementation
+
+{ TDateUtils }
+
+class function TDateUtils.StringToDate(const ADateStr: string): TDate;
+begin
+  try
+    Result := StrToDate(ADateStr);
+  except
+    on E: EConvertError do
+      Result := 0; // Retorna 0 (data nula) em caso de erro
+  end;
+end;
+
+end.
+

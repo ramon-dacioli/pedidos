@@ -1,0 +1,98 @@
+unit uModelProduto;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, uDmConexao, FireDAC.Comp.Client;
+
+type
+  TProduto = class
+  private
+    FID: Integer;
+    FNome: string;
+    FPreco: Currency;
+    FQuantidade: Integer;
+    // Função para setar os parâmetros na query
+    procedure SetParams(FDQuery: TFDQuery);
+  public
+    constructor Create(AID: Integer; ANome: string; APreco: Currency; AQuantidade: Integer);
+
+    // Métodos CRUD
+    procedure Inserir;
+    procedure Atualizar;
+    procedure Excluir;
+    class function ListarTodos: TFDQuery;
+
+    // Propriedades para acessar os campos
+    property ID: Integer read FID write FID;
+    property Nome: string read FNome write FNome;
+    property Preco: Currency read FPreco write FPreco;
+    //property Quantidade: Integer read FQuantidade write FQuantidade;
+  end;
+
+implementation
+
+{ TProduto }
+
+constructor TProduto.Create(AID: Integer; ANome: string; APreco: Currency; AQuantidade: Integer);
+begin
+  FID := AID;
+  FNome := ANome;
+  FPreco := APreco;
+  FQuantidade := AQuantidade;
+end;
+
+procedure TProduto.SetParams(FDQuery: TFDQuery);
+begin
+  FDQuery.ParamByName('ID').AsInteger := FID;
+  FDQuery.ParamByName('Nome').AsString := FNome;
+  FDQuery.ParamByName('Preco').AsCurrency := FPreco;
+  //FDQuery.ParamByName('Quantidade').AsInteger := FQuantidade;
+end;
+
+procedure TProduto.Inserir;
+begin
+  // Preparando a Query de Inserção
+  with DataModule2.FDQuery1 do
+  begin
+    SQL.Text := 'INSERT INTO Produto (Nome, Preco, Quantidade) VALUES (:Nome, :Preco, :Quantidade)';
+    SetParams(DataModule2.FDQuery1);
+    ExecSQL;
+  end;
+end;
+
+procedure TProduto.Atualizar;
+begin
+  // Preparando a Query de Atualização
+  with DataModule2.FDQuery1 do
+  begin
+    SQL.Text := 'UPDATE Produto SET Nome = :Nome, Preco = :Preco, Quantidade = :Quantidade WHERE ID = :ID';
+    SetParams(DataModule2.FDQuery1);
+    ExecSQL;
+  end;
+end;
+
+procedure TProduto.Excluir;
+begin
+  // Preparando a Query de Exclusão
+  with DataModule2.FDQuery1 do
+  begin
+    SQL.Text := 'DELETE FROM Produto WHERE ID = :ID';
+    ParamByName('ID').AsInteger := FID;
+    ExecSQL;
+  end;
+end;
+
+class function TProduto.ListarTodos: TFDQuery;
+begin
+  // Preparando a Query de Seleção
+  with DataModule2.FDQuery1 do
+  begin
+    SQL.Text := 'SELECT * FROM Produto';
+    Open;
+    Result := DataModule2.FDQuery1;
+  end;
+end;
+
+end.
+

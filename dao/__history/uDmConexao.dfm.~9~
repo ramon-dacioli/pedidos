@@ -1,0 +1,10 @@
+object DmConexao: TDmConexao
+  Height = 235
+  Width = 415
+  object sqlConexao: TFDConnection
+    Params.Strings = (
+      'DriverID=MySQL')
+    Left = 200
+    Top = 80
+  end
+end

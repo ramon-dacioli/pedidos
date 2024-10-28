@@ -1,0 +1,37 @@
+unit uPedidoProdutoModel;
+
+interface
+
+uses
+  SysUtils;
+
+type
+  TPedidoProduto = class
+  private
+    FID: Integer;
+    FQuantidade: Double;
+    FValorUnitario: Double;
+    FValorTotal: Double;
+    FCodigoProduto: Integer;
+    FNumeroPedido: Integer;
+    procedure SetQuantidade(const Value: string);
+  public
+    property ID: Integer read FID write FID;
+    property Quantidade: string read FQuantidade write SetQuantidade;
+    property ValorUnitario: double read FValorUnitario write FValorUnitario;
+    property ValorTotal: double read FValorTotal write FValorTotal;
+    property CodigoProduto: Integer read FCodigoProduto write FCodigoProduto;
+    property NumeroPedido: Integer read FNumeroPedido write FNumeroPedido;
+  end;
+
+implementation
+
+{ TPedidoProduto }
+
+procedure TPedidoProduto.SetQuantidade(const Value: string);
+begin
+  FQuantidade := Value;
+end;
+
+end.
+

@@ -1,0 +1,63 @@
+unit uProdutoController;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, uModelProduto, FireDAC.Comp.Client;
+
+type
+  TProdutoController = class
+  public
+    procedure InserirProduto(Descricao: string; PrecoVenda: Currency);
+    procedure AtualizarProduto(Codigo: Integer; Descricao: string; PrecoVenda: Currency);
+    procedure ExcluirProduto(Codigo: Integer);
+    function ListarProdutos: TFDQuery;
+  end;
+
+implementation
+
+{ TProdutoController }
+
+procedure TProdutoController.InserirProduto(Descricao: string; PrecoVenda: Currency);
+var
+  Produto: TProduto;
+begin
+  Produto := TProduto.Create(0, Descricao, PrecoVenda);
+  try
+    Produto.Inserir;
+  finally
+    Produto.Free;
+  end;
+end;
+
+procedure TProdutoController.AtualizarProduto(Codigo: Integer; Descricao: string; PrecoVenda: Currency);
+var
+  Produto: TProduto;
+begin
+  Produto := TProduto.Create(Codigo, Descricao, PrecoVenda);
+  try
+    Produto.Atualizar;
+  finally
+    Produto.Free;
+  end;
+end;
+
+procedure TProdutoController.ExcluirProduto(Codigo: Integer);
+var
+  Produto: TProduto;
+begin
+  Produto := TProduto.Create(Codigo, '', 0);
+  try
+    Produto.Excluir;
+  finally
+    Produto.Free;
+  end;
+end;
+
+function TProdutoController.ListarProdutos: TFDQuery;
+begin
+  Result := TProduto.ListarTodos;
+end;
+
+end.
+

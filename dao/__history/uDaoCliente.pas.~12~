@@ -1,0 +1,80 @@
+unit uDaoCliente;
+
+interface
+
+uses
+  SysUtils, Classes, DB, FireDAC.Comp.Client, FireDAC.Stan.Param, uClienteModel,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  FireDAC.Comp.DataSet, Datasnap.DBClient;
+
+type
+  TDaoCliente = class
+  private
+    qryPesquisar: TFDQuery;
+    qryInserir: TFDQuery;
+    qryAlterar: TFDQuery;
+    qryExcluir: TFDQuery;
+    FConnection: TFDConnection; // Referência à conexão
+  public
+    constructor Create(AConnection: TFDConnection); // Construtor modificado
+    destructor Destroy; override;
+    procedure Pesquisar(sNome: string);
+    procedure CarregarCliente(oCliente: TCliente; iCodigo: Integer);
+  end;
+
+implementation
+
+{ TDaoCliente }
+
+constructor TDaoCliente.Create(AConnection: TFDConnection);
+begin
+  inherited Create;
+  FConnection := AConnection; // Armazena a conexão recebida
+  qryPesquisar := TFDQuery.Create(nil);
+  qryInserir := TFDQuery.Create(nil);
+  qryAlterar := TFDQuery.Create(nil);
+  qryExcluir := TFDQuery.Create(nil);
+
+  // Configurar a conexão das queries
+  qryPesquisar.Connection := FConnection;
+  qryInserir.Connection := FConnection;
+  qryAlterar.Connection := FConnection;
+  qryExcluir.Connection := FConnection;
+end;
+
+destructor TDaoCliente.Destroy;
+begin
+  qryPesquisar.Free;
+  qryInserir.Free;
+  qryAlterar.Free;
+  qryExcluir.Free;
+  inherited Destroy;
+end;
+
+procedure TDaoCliente.CarregarCliente(oCliente: TCliente; iCodigo: Integer);
+begin
+  qryPesquisar.SQL.Text := 'SELECT * FROM clientes WHERE codigo = :codigo';
+  qryPesquisar.ParamByName('codigo').AsInteger := iCodigo;
+  qryPesquisar.Open;
+
+  if not qryPesquisar.IsEmpty then
+  begin
+    oCliente.Codigo := qryPesquisar.FieldByName('codigo').AsInteger;
+    oCliente.Nome := qryPesquisar.FieldByName('nome').AsString;
+    oCliente.Cidade := qryPesquisar.FieldByName('cidade').AsString;
+    oCliente.UF := qryPesquisar.FieldByName('uf').AsString;
+  end;
+
+  qryPesquisar.Close;
+end;
+
+procedure TDaoCliente.Pesquisar(sNome: string);
+begin
+  qryPesquisar.SQL.Text := 'SELECT * FROM clientes WHERE nome LIKE :Nome';
+  qryPesquisar.ParamByName('Nome').AsString := '%' + sNome + '%';
+  qryPesquisar.Open;
+end;
+
+end.
+

@@ -1,0 +1,31 @@
+unit uProdutoModel;
+
+interface
+
+uses
+  SysUtils;
+
+type
+  TProduto = class
+  private
+    FCodigo: Integer;
+    FDescricao: string;
+    FPrecoVenda: string;
+    procedure SetDescricao(const Value: string);
+  public
+    property Codigo: Integer read FCodigo write FCodigo;
+    property Descricao: string read FDescricao write SetDescricao;
+    property PrecoVenda: string read FPrecoVenda write FPrecoVenda;
+  end;
+
+implementation
+
+{ TCliente }
+
+procedure TProduto.SetDescricao(const Value: string);
+begin
+  FDescricao := Value;
+end;
+
+end.
+

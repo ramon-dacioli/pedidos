@@ -1,0 +1,22 @@
+program Pedidos;
+
+uses
+  Vcl.Forms,
+  uFrmPedidoGeral in 'view\uFrmPedidoGeral.pas' {Form1},
+  uDmConexao in 'dao\uDmConexao.pas' {DataModule1: TDataModule},
+  uDmCliente in 'dao\uDmCliente.pas' {DataModule2: TDataModule},
+  uClienteModel in 'model\uClienteModel.pas',
+  uClienteController in 'controller\uClienteController.pas',
+  uFrmCliente in 'view\uFrmCliente.pas' {Form2};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TDataModule1, DataModule1);
+  Application.CreateForm(TDataModule2, DataModule2);
+  Application.CreateForm(TForm2, Form2);
+  Application.Run;
+end.

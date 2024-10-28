@@ -1,0 +1,63 @@
+unit uPedidoGeralController;
+
+interface
+
+uses
+  uPedidoGeralModel;
+
+type
+  TPedidoGeralController = class
+  public
+    //constructor Create;
+    //destructor Destroy; override;
+    procedure Pesquisar(sNumeroPedido: Integer);
+    procedure CarregarPedido(oPedido: TPedidoGeral; iNumeroPedido: Integer);
+    function Inserir(oPedido: TPedidoGeral; var sErro: String): Boolean;
+    function Alterar(oPedido: TPedidoGeral; var sErro: String): Boolean;
+    function Excluir(iNumeroPedido: Integer; var sErro: String): Boolean;
+  end;
+
+implementation
+
+uses uDmPedidoGeral, SysUtils;
+
+{ TPedidoGeralController }
+
+function TPedidoGeralController.Alterar(oPedido: TPedidoGeral; var sErro: String): Boolean;
+begin
+  Result := DmPedidoGeral.Alterar(oPedido, sErro);
+end;
+
+procedure TPedidoGeralController.CarregarPedido(oPedido: TPedidoGeral; iNumeroPedido: Integer);
+begin
+  DmPedidoGeral.CarregarPedido(oPedido, iNumeroPedido);
+end;
+
+//constructor TPedidoGeralController.Create;
+//begin
+//  DmPedidoGeral := TDmPedidoGeral.Create(nil);
+//end;
+
+//destructor TPedidoGeralController.Destroy;
+//begin
+//  FreeAndNil(DmPedidoGeral);
+// inherited;
+//end;
+
+function TPedidoGeralController.Excluir(iNumeroPedido: Integer; var sErro: String): Boolean;
+begin
+  Result := DmPedidoGeral.Excluir(iNumeroPedido, sErro);
+end;
+
+function TPedidoGeralController.Inserir(oPedido: TPedidoGeral; var sErro: String): Boolean;
+begin
+  Result := DmPedidoGeral.Inserir(oPedido, sErro);
+end;
+
+procedure TPedidoGeralController.Pesquisar(sNumeroPedido: Integer);
+begin
+  DmPedidoGeral.Pesquisar(sNumeroPedido);
+end;
+
+end.
+

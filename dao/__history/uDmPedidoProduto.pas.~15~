@@ -1,0 +1,164 @@
+unit uDmPedidoProduto;
+
+interface
+
+uses
+  SysUtils, Classes, DB, FireDAC.Comp.Client, FireDAC.Stan.Param, uPedidoProdutoModel,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  FireDAC.Comp.DataSet, Datasnap.DBClient, Data.FMTBcd, Data.SqlExpr;
+
+type
+  TDmPedidoProduto = class(TDataModule)
+    qryInserir: TFDQuery;
+    sqlInserirMercadorias: TSQLDataSet;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    procedure Pesquisar(sCodigoProduto: string);
+    procedure CarregarPedidoProduto(oPedidoProduto: TPedidoProduto; iID: Integer);
+    function Inserir(oPedidoProduto: TPedidoProduto; out sErro: string): Boolean;
+    function Alterar(oPedidoProduto: TPedidoProduto; out sErro: string): Boolean;
+    function Excluir(iID: Integer; out sErro: string): Boolean;
+
+    function InserirMercadoria (oPedidoProduto: TPedidoProduto; out sErro: string) : Boolean;
+
+  end;
+
+var
+  DmPedidoProduto: TDmPedidoProduto;
+
+implementation
+
+uses uDmConexao; // Supondo que o DmConexao contém o TFDConnection
+
+{$R *.dfm}
+
+{ TDmPedidoProduto }
+
+function TDmPedidoProduto.Alterar(oPedidoProduto: TPedidoProduto; out sErro: string): Boolean;
+begin
+  Result := False;
+  try
+    qryInserir.SQL.Text := 'UPDATE pedidos_produtos SET quantidade = :quantidade, valor_unitario = :valor_unitario, valor_total = :valor_total, produtos_codigo = :codigo_produto, pedidos_dados_gerais_numero_pedido = :pedidos_dados_gerais_numero_pedido WHERE id = :id';
+    qryInserir.ParamByName('quantidade').AsString := oPedidoProduto.Quantidade;
+    qryInserir.ParamByName('valor_unitario').AsFloat := oPedidoProduto.ValorUnitario;
+    qryInserir.ParamByName('valor_total').AsString := oPedidoProduto.ValorTotal;
+    qryInserir.ParamByName('produtos_codigo').AsString := oPedidoProduto.CodigoProduto;
+    qryInserir.ParamByName('pedidos_dados_gerais_numero_pedido').AsInteger := oPedidoProduto.NumeroPedido;
+    qryInserir.ParamByName('id').AsInteger := oPedidoProduto.ID;
+
+    qryInserir.ExecSQL;
+    Result := True;
+  except
+    on E: Exception do
+      sErro := 'Ocorreu um erro ao alterar o PedidoProduto: ' + sLineBreak + E.Message;
+  end;
+end;
+
+procedure TDmPedidoProduto.CarregarPedidoProduto(oPedidoProduto: TPedidoProduto; iID: Integer);
+begin
+  qryInserir.SQL.Text := 'SELECT * FROM pedidos_produtos WHERE id = :id';
+  qryInserir.ParamByName('id').AsInteger := iID;
+  qryInserir.Open;
+
+  if not qryInserir.IsEmpty then
+  begin
+    oPedidoProduto.ID := qryInserir.FieldByName('id').AsInteger;
+    oPedidoProduto.Quantidade := qryInserir.FieldByName('quantidade').AsString;
+    oPedidoProduto.ValorUnitario := qryInserir.FieldByName('valor_unitario').AsFloat;
+    oPedidoProduto.ValorTotal := qryInserir.FieldByName('valor_total').AsString;
+    oPedidoProduto.CodigoProduto := qryInserir.FieldByName('produtos_codigo').AsString;
+    oPedidoProduto.NumeroPedido := qryInserir.FieldByName('pedidos_dados_gerais_numero_pedido').AsInteger;
+  end;
+
+  qryInserir.Close;
+end;
+
+procedure TDmPedidoProduto.DataModuleCreate(Sender: TObject);
+begin
+  try
+    if Assigned(DmConexao) and Assigned(DmConexao.sqlConexao) and DmConexao.sqlConexao.Connected then
+    begin
+      qryInserir.Connection := DmConexao.sqlConexao;
+      qryInserir.Connection := DmConexao.sqlConexao;
+      qryInserir.Connection := DmConexao.sqlConexao;
+      qryInserir.Connection := DmConexao.sqlConexao;
+    end
+    else
+    begin
+      raise Exception.Create('A conexão não está disponível ou não foi criada.');
+    end;
+  except
+    on E: Exception do
+      //ShowMessage('Erro ao configurar as conexões: ' + E.Message);
+  end;
+end;
+
+function TDmPedidoProduto.Excluir(iID: Integer; out sErro: string): Boolean;
+begin
+  Result := False;
+  try
+    qryInserir.SQL.Text := 'DELETE FROM pedidos_produtos WHERE id = :id';
+    qryInserir.ParamByName('id').AsInteger := iID;
+
+    qryInserir.ExecSQL;
+    Result := True;
+  except
+    on E: Exception do
+      sErro := 'Ocorreu um erro ao excluir o PedidoProduto: ' + sLineBreak + E.Message;
+  end;
+end;
+
+function TDmPedidoProduto.Inserir(oPedidoProduto: TPedidoProduto; out sErro: string): Boolean;
+begin
+  Result := False;
+  try
+    qryInserir.SQL.Text := 'INSERT INTO pedidos_produtos (quantidade, valor_unitario, valor_total, produtos_codigo, pedidos_dados_gerais_numero_pedido) ' +
+                           'VALUES (:quantidade, :valor_unitario, :valor_total, :produtos_codigo, :pedidos_dados_gerais_numero_pedido)';
+    qryInserir.ParamByName('quantidade').AsString := oPedidoProduto.Quantidade;
+    qryInserir.ParamByName('valor_unitario').AsFloat := oPedidoProduto.ValorUnitario;
+    qryInserir.ParamByName('valor_total').AsFloat := oPedidoProduto.ValorTotal;
+    qryInserir.ParamByName('produtos_codigo').AsInteger := oPedidoProduto.CodigoProduto;
+    qryInserir.ParamByName('pedidos_dados_gerais_numero_pedido').AsInteger := oPedidoProduto.NumeroPedido;
+
+    qryInserir.ExecSQL;
+    Result := True;
+  except
+    on E: Exception do
+      sErro := 'Ocorreu um erro ao inserir o PedidoProduto: ' + sLineBreak + E.Message;
+  end;
+end;
+
+function TDmPedidoProduto.InserirMercadoria(oPedidoProduto: TPedidoProduto;
+  out sErro: string): Boolean;
+begin
+  with sqlInserirMercadorias, oPedidoProduto do
+  begin
+    Params[0].AsString := Quantidade;
+    Params[1].AsFloat := ValorUnitario;
+    Params[2].AsFloat := ValorTotal;
+    Params[3].AsInteger := CodigoProduto;
+    Params[4].AsInteger := NumeroPedido;
+    try
+      ExecSQL();
+      Result := True;
+    except on E: Exception do
+      begin
+        sErro := 'Ocorreu um erro ao inserir o ClienteVendas: ' + sLineBreak + E.Message;
+        Result := False;
+      end;
+    end;
+  end;
+end;
+
+procedure TDmPedidoProduto.Pesquisar(sCodigoProduto: string);
+begin
+  qryInserir.SQL.Text := 'SELECT * FROM pedidos_produtos WHERE produtos_codigo LIKE :ProdutoCodigo';
+  qryInserir.ParamByName('CodigoProduto').AsString := '%' + sCodigoProduto + '%';
+  qryInserir.Open;
+end;
+
+end.
+

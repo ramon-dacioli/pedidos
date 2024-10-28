@@ -1,0 +1,24 @@
+object DmPedidoGeral: TDmPedidoGeral
+  Height = 271
+  Width = 336
+  object FDQuery1: TFDQuery
+    Left = 64
+    Top = 64
+  end
+  object FDQuery2: TFDQuery
+    Left = 136
+    Top = 72
+  end
+  object FDQuery3: TFDQuery
+    Left = 48
+    Top = 192
+  end
+  object FDQuery4: TFDQuery
+    Left = 176
+    Top = 152
+  end
+  object FDQuery5: TFDQuery
+    Left = 256
+    Top = 48
+  end
+end

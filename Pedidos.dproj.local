@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/09/08 20:23:03.000.445,=C:\Users\ramon\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/10/14 14:43:30.000.567,=C:\Users\ramon\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/10/14 18:13:15.000.248,=C:\Users\ramon\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/10/24 17:09:52.000.411,=C:\Users\ramon\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 15:42:17.000.728,=C:\Users\ramon\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 15:42:45.000.657,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\view\uFrmPedidoGeral.pas=C:\Users\ramon\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 15:42:45.000.657,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\view\uFrmPedidoGeral.dfm=C:\Users\ramon\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2024/10/25 15:42:53.000.402,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Pedidos.dproj=C:\Users\ramon\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2024/10/25 15:43:46.000.402,=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 15:45:31.000.384,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\dao\uDmConexao.pas=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 15:45:31.000.384,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\dao\uDmConexao.dfm=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.dfm</Transaction>
+    <Transaction>2024/10/25 15:45:52.000.260,=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit2.pas</Transaction>
+    <Transaction>2024/10/25 15:47:33.000.626,=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 15:47:42.000.399,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\model\uClienteModel.pas=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 15:48:46.000.478,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\dao\uDmCliente.pas=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit2.pas</Transaction>
+    <Transaction>2024/10/25 15:48:46.000.478,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\dao\uDmCliente.dfm=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit2.dfm</Transaction>
+    <Transaction>2024/10/25 15:48:51.000.933,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit2.dfm=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\dao\uDmCliente.dfm</Transaction>
+    <Transaction>2024/10/25 15:48:51.000.933,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit2.pas=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\dao\uDmCliente.pas</Transaction>
+    <Transaction>2024/10/25 15:49:05.000.524,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\dao\uDmCliente.dfm=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit2.dfm</Transaction>
+    <Transaction>2024/10/25 15:49:05.000.524,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\dao\uDmCliente.pas=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit2.pas</Transaction>
+    <Transaction>2024/10/25 15:52:12.000.247,=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 15:52:18.000.615,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\controller\uClienteController.pas=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 15:53:49.000.270,=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit2.pas</Transaction>
+    <Transaction>2024/10/25 15:54:04.000.190,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\view\uFrmCliente.dfm=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit2.dfm</Transaction>
+    <Transaction>2024/10/25 15:54:04.000.190,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\view\uFrmCliente.pas=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit2.pas</Transaction>
+    <Transaction>2024/10/25 16:09:40.000.855,=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 16:10:03.000.827,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\model\uProdutoModel.pas=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 16:10:35.000.241,=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 16:10:51.000.174,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\dao\uDmProduto.dfm=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.dfm</Transaction>
+    <Transaction>2024/10/25 16:10:51.000.174,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\dao\uDmProduto.pas=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 16:17:25.000.418,=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 16:17:34.000.230,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\controller\uProdutoController.pas=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 16:19:47.000.406,=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 16:19:58.000.016,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\view\uFrmProduto.dfm=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.dfm</Transaction>
+    <Transaction>2024/10/25 16:19:58.000.016,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\view\uFrmProduto.pas=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 17:06:47.000.022,=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 17:06:58.000.981,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\model\uPedidoGeralModel.pas=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 17:07:44.000.297,=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 17:08:25.000.981,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\dao\uDmPedidoGeral.dfm=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.dfm</Transaction>
+    <Transaction>2024/10/25 17:08:25.000.981,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\dao\uDmPedidoGeral.pas=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 17:17:22.000.761,=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 17:17:30.000.253,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\controller\uPedidoGeralController.pas=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 23:30:53.000.401,=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 23:31:00.000.124,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\model\uPedidoProdutoModel.pas</Transaction>
+    <Transaction>2024/10/25 23:31:22.000.680,=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 23:34:32.000.891,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.dfm=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\dao\uDmPedidoProduto.dfm</Transaction>
+    <Transaction>2024/10/25 23:34:32.000.891,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\dao\uDmPedidoProduto.pas</Transaction>
+    <Transaction>2024/10/25 23:36:59.000.693,=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/25 23:37:08.000.637,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\controller\uPedidoProdutoController.pas</Transaction>
+    <Transaction>2024/10/27 17:29:11.000.847,=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/27 17:29:40.000.627,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\helpers\UConversorData.pas=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/27 17:49:18.000.285,=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/27 17:49:28.000.669,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\helpers\uTabSimulator.pas</Transaction>
+    <Transaction>2024/10/27 17:53:21.000.292,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\helpers\uTabSimulator.pas=</Transaction>
+    <Transaction>2024/10/27 20:46:00.000.845,=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas</Transaction>
+    <Transaction>2024/10/27 20:46:10.000.798,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\Unit1.pas=C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\helpers\uDateUtils.pas</Transaction>
+    <Transaction>2024/10/28 00:22:05.000.386,C:\Users\ramon\OneDrive\Documentos\Delphi Projects\Pedidos\helpers\UConversorData.pas=</Transaction>
+  </Transactions>
+</BorlandProject>

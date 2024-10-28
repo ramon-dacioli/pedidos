@@ -1,0 +1,9 @@
+object DmCliente: TDmCliente
+  Height = 191
+  Width = 220
+  object qryPesquisar: TFDQuery
+    Connection = DmConexao.sqlConexao
+    Left = 72
+    Top = 40
+  end
+end

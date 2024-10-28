@@ -1,0 +1,58 @@
+unit uClienteController;
+
+interface
+
+uses
+  uClienteModel;
+
+type
+  TClienteController = class
+  private
+    FCliente: TCliente;
+  public
+    constructor Create;
+    destructor Destroy; override;
+    procedure Pesquisar (sNome: string);
+    procedure CarregarCliente (oCliente: TCliente; iCodigo: Integer);
+    function ObterNome: string;
+    procedure DefinirNome(const Value: string);
+
+  end;
+
+implementation
+
+uses uDmCliente, SysUtils;
+
+procedure TClienteController.CarregarCliente(oCliente: TCliente;
+  iCodigo: Integer);
+begin
+  DmCliente.CarregarCliente(oCliente, iCodigo);
+end;
+
+constructor TClienteController.Create;
+begin
+  FCliente := TCliente.Create;
+end;
+
+procedure TClienteController.DefinirNome(const Value: string);
+begin
+  FCliente.Nome := Value;
+end;
+
+destructor TClienteController.Destroy;
+begin
+  FCliente.Free;
+  inherited;
+end;
+
+function TClienteController.ObterNome: string;
+begin
+  Result := FCliente.Nome;
+end;
+
+procedure TClienteController.Pesquisar(sNome: string);
+begin
+  DmCliente.Pesquisar(sNome);
+end;
+
+end.

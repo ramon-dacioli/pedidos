@@ -1,0 +1,24 @@
+unit uDateUtils;
+
+interface
+
+uses
+  System.SysUtils, System.DateUtils;
+
+function StringToDate(const ADateStr: string; const AFormat: string = 'dd/mm/yyyy'): TDate;
+
+implementation
+
+function StringToDate(const ADateStr: string; const AFormat: string = 'dd/mm/yyyy'): TDate;
+var
+  LDate: TDateTime;
+begin
+  // Tenta converter a string para TDateTime com o formato especificado
+  if TryStrToDate(ADateStr, LDate, AFormat) then
+    Result := DateOf(LDate)
+  else
+    raise Exception.Create('Formato de data inválido: ' + ADateStr);
+end;
+
+end.
+
